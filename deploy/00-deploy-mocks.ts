@@ -1,13 +1,14 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { DeployFunction } from "hardhat-deploy/types"
-import { developmentNetworks } from "@/config"
+import { developmentNetworks } from "@/helper-config"
+import { ethers } from "hardhat"
 
-const BASE_FEE = 10n ** 17n
+const BASE_FEE = ethers.parseEther("0.1")
 const GAS_PRICE = 10n ** 9n
 const WEI_PER_UNIT_LINK = 4154145017575665
 
-const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
-  const { deployments, getNamedAccounts, network } = hre
+const deployMocksFunc: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+  const { getNamedAccounts, deployments, network } = hre
   const { deploy, log } = deployments
   const { deployer } = await getNamedAccounts()
 
@@ -18,7 +19,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       log: true,
       args: [BASE_FEE, GAS_PRICE, WEI_PER_UNIT_LINK],
     })
+    log("Mocks deployed successfully!")
   }
 }
 
-export default func
+deployMocksFunc.tags = ["Mocks"]
+export default deployMocksFunc

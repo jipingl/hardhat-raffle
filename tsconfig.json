@@ -1,5 +1,4 @@
 {
-  "include": ["./hardhat.config.ts", "./scripts", "./deploy", "./test"],
   "compilerOptions": {
     "target": "es2020",
     "module": "commonjs",
@@ -11,5 +10,7 @@
     "paths": {
       "@/*": ["./*"]
     }
-  }
+  },
+  "include": ["./scripts", "./deploy", "./test", "./typechain-types"],
+  "files": ["./hardhat.config.ts"]
 }
