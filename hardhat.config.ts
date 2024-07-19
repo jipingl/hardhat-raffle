@@ -6,10 +6,13 @@ import "@typechain/hardhat"
 import "hardhat-deploy"
 import "hardhat-deploy-ethers"
 import "tsconfig-paths/register"
+import "hardhat-gas-reporter"
+import "solidity-coverage"
 
 const SEPOLIA_RPC_URL = vars.get("SEPOLIA_RPC_URL", "Your Sepolia RPC URL")
 const DEPLOYER_PRIVATE_KEY = vars.get("DEPLOYER_PRIVATE_KEY", "Your Private Key")
 const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY", "Your Etherscan API Key")
+const COINMARKETCAP_API_KEY = vars.get("COINMARKETCAP_API_KEY", "Your CoinMarketCap API Key")
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -54,6 +57,15 @@ const config: HardhatUserConfig = {
   },
   paths: {
     deployments: "deployments",
+  },
+  gasReporter: {
+    enabled: true,
+    currency: "USD",
+    coinmarketcap: COINMARKETCAP_API_KEY,
+    L1Etherscan: ETHERSCAN_API_KEY,
+    L1: "ethereum",
+    darkMode: true,
+    offline: false,
   },
 }
 

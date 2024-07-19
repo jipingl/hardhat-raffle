@@ -12,7 +12,11 @@ node_modules
 # solidity-coverage files
 /coverage
 /coverage.json
+/testMatrix.json
 
 # local depolyment files
 deployments/hardhat/*
 deployments/localhost/*
+
+# mocha files
+mochaOutput.json
