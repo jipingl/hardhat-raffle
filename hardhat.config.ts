@@ -59,7 +59,7 @@ const config: HardhatUserConfig = {
     deployments: "deployments",
   },
   gasReporter: {
-    enabled: true,
+    enabled: false,
     currency: "USD",
     coinmarketcap: COINMARKETCAP_API_KEY,
     L1Etherscan: ETHERSCAN_API_KEY,

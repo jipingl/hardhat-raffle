@@ -24,9 +24,9 @@ const deployRaffleFunc: DeployFunction = async function (hre: HardhatRuntimeEnvi
     // create subscription
     const transactionResponse = await vrfCoordinatorMock.createSubscription()
     const transactionReceipt = await transactionResponse.wait(1)
-    const eventt = transactionReceipt?.logs[0]
-    if (eventt instanceof EventLog) {
-      subscriptionId = eventt.args.subId
+    const event = transactionReceipt?.logs[0]
+    if (event instanceof EventLog) {
+      subscriptionId = event.args.subId
     }
     // fund the subscription
     if (subscriptionId !== undefined) {
@@ -59,6 +59,13 @@ const deployRaffleFunc: DeployFunction = async function (hre: HardhatRuntimeEnvi
     waitConfirmations: getWaitConfirmations(),
     args: args,
   })
+
+  // Register raffle consumer to VRFCoordinator
+  // Live environment requires going to the VRF console
+  if (isDevelopmentNetwork()) {
+    const vrfCoordinatorMock: VRFCoordinatorMock = await ethers.getContract("VRFCoordinatorMock")
+    await vrfCoordinatorMock.addConsumer(subscriptionId, raffle.address)
+  }
 
   // Verify deployed contract
   if (!isDevelopmentNetwork()) {
