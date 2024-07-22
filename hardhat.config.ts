@@ -9,10 +9,11 @@ import "tsconfig-paths/register"
 import "hardhat-gas-reporter"
 import "solidity-coverage"
 
-const SEPOLIA_RPC_URL = vars.get("SEPOLIA_RPC_URL", "Your Sepolia RPC URL")
-const DEPLOYER_PRIVATE_KEY = vars.get("DEPLOYER_PRIVATE_KEY", "Your Private Key")
-const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY", "Your Etherscan API Key")
-const COINMARKETCAP_API_KEY = vars.get("COINMARKETCAP_API_KEY", "Your CoinMarketCap API Key")
+const SEPOLIA_RPC_URL = vars.get("SEPOLIA_RPC_URL")
+const DEPLOYER_PRIVATE_KEY = vars.get("DEPLOYER_PRIVATE_KEY")
+const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY")
+const COINMARKETCAP_API_KEY = vars.get("COINMARKETCAP_API_KEY")
+export const SEPOLIA_VRF_SUBSCRIPTION_ID = vars.get("SEPOLIA_VRF_SUBSCRIPTION_ID")
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -66,6 +67,9 @@ const config: HardhatUserConfig = {
     L1: "ethereum",
     darkMode: true,
     offline: false,
+  },
+  mocha: {
+    timeout: 10 * 60 * 1000,
   },
 }
 

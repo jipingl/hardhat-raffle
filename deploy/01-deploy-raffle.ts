@@ -11,8 +11,8 @@ import { VRFCoordinatorMock } from "@/typechain-types/contracts/test/VRFCoordina
 import { EventLog } from "ethers"
 
 const deployRaffleFunc: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
-  const { getNamedAccounts, deployments, network, ethers } = hre
-  const { deploy, execute, log } = deployments
+  const { getNamedAccounts, deployments, ethers } = hre
+  const { deploy } = deployments
   const { deployer } = await getNamedAccounts()
 
   let vrfCoordinatorMockAddress: string | undefined, subscriptionId: bigint | undefined

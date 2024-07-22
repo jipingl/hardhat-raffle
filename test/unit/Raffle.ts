@@ -1,15 +1,11 @@
-import { mine, time } from "@nomicfoundation/hardhat-network-helpers"
-import { deployments, getNamedAccounts, ethers, getUnnamedAccounts } from "hardhat"
+import { time } from "@nomicfoundation/hardhat-network-helpers"
+import { deployments, getNamedAccounts, ethers } from "hardhat"
 import { isDevelopmentNetwork, networkConfig, getNetworkName } from "@/helper-config"
 import { Raffle, VRFCoordinatorMock } from "@/typechain-types"
-import { assert, expect } from "chai"
+import { expect } from "chai"
 import { describe, it } from "mocha"
-import { vrf } from "@/typechain-types/@chainlink/contracts/src/v0.8"
-import { EventLog } from "ethers"
-import { any, bigint, boolean } from "hardhat/internal/core/params/argumentTypes"
-import { WinnerPickedEvent } from "@/typechain-types/contracts/Raffle"
 
-describe("Raffle", () => {
+describe("(UnitTest)Raffle", () => {
   // Unit testing is only performed in the development environment
   // ⚠️ Arrow function does not support this keyword
   before(function () {
