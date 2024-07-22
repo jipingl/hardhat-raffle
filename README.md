@@ -1,4 +1,4 @@
-# Raffle smart contract
+# Raffle Smart Contract
 
 ## Dependency Introduction
 
