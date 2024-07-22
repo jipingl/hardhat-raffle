@@ -1,4 +1,4 @@
-# Hardhat raffle
+# Raffle smart contract
 
 ## Dependency Introduction
 
